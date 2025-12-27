@@ -15,6 +15,29 @@ An intelligent data analysis agent that allows you to "chat" with your CSV data 
 * [Google Gemini API](https://ai.google.dev/) - LLM backend.
 * [Pandas](https://pandas.pydata.org/) - Data manipulation.
 * [Matplotlib](https://matplotlib.org/) - Graphing and visualization.
+  
+## 🏗️ Architecture Flow
+
+```mermaid
+graph TD
+    A[👤 User Input] -->|Natural Language Query| B(🤖 LangChain CSV Agent)
+    
+    subgraph "Agent Internal Loop"
+        B -->|1. Reason & Generate Code| C{🧠 Google Gemini LLM}
+        C -->|2. Returns Python Code| D[🐍 Python REPL Executor]
+        D -->|3. Read/Filter Data| E[(📊 employees.csv)]
+        E -->|4. Return Data/Result| D
+        D -->|5. Send Observations| B
+    end
+
+    B -->|Final Answer| F[📝 Text Response]
+    B -->|Visual Output| G[📈 Matplotlib Chart]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px,color:black
+    style B fill:#bbf,stroke:#333,stroke-width:2px,color:black
+    style C fill:#ff9,stroke:#333,stroke-width:2px,color:black
+    style E fill:#bfb,stroke:#333,stroke-width:2px,color:black
+```
 
 ## 📋 Prerequisites
 
